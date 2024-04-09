@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src='https://pixijs.download/v8.0.5/pixi.min.js'></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <script type="module">
+        // debugger
+        const app = new PIXI.Application();
+
+await app.init({ width: window.innerWidth, height: window.innerHeight,backgroundColor: 0xffffff});
+
+// Add the view to the DOM
+document.body.appendChild(app.canvas);
+
+// 图结构数据
+const nodes = [
+  { id: 1, label: 'Node 1' },
+  { id: 2, label: 'Node 2' },
+  { id: 3, label: 'Node 3' },
+];
+
+const edges = [
+  { source: nodes[0], target: nodes[1] },
+  { source: nodes[1], target: nodes[2] },
+];
+
+function createNodeGraphics(node) {
+  const graphics = new PIXI.Graphics();
+  graphics.beginFill(0xFF0000, 1);
+  graphics.drawCircle(0, 0, 30);
+  graphics.endFill();
+
+  const text = new PIXI.Text(node.label, { fontSize: 16 });
+  text.anchor.set(0.5);
+
+  const container = new PIXI.Container();
+  container.addChild(graphics);
+  container.addChild(text);
+  container.interactive = true;
+  container.buttonMode = true;
+
+  return container;
+}
+
+function createEdgeGraphics(source, target) {
+  const graphics = new PIXI.Graphics();
+  graphics.lineStyle(2, 0x35b2f9, 1);
+  graphics.moveTo(source.x + source.width / 2, source.y + source.height / 2);
+  graphics.lineTo(target.x + target.width / 2, target.y + target.height / 2);
+  return graphics;
+}
+
+nodes.forEach(node => {
+  const nodeContainer = createNodeGraphics(node);
+  nodeContainer.x = Math.random() * app.screen.width;
+  nodeContainer.y = Math.random() * app.screen.height;
+  app.stage.addChild(nodeContainer);
+});
+
+edges.forEach(edge => {
+  const edgeGraphics = createEdgeGraphics(edge.source, edge.target);
+  app.stage.addChild(edgeGraphics);
+});
+
+let highlightedNode = null;
+
+function highlightNode(node) {
+  if (highlightedNode) {
+    highlightedNode.alpha = 1;
+  }
+
+  highlightedNode = node;
+  if (node) {
+    node.alpha = 0.9;
+  }
+}
+
+app.stage.on('pointerdown', event => {
+  const hitNode = app.stage.children.find(child => child.containsPoint(event.data.global));
+  if (hitNode) {
+    highlightNode(hitNode);
+  } else {
+    highlightNode(null);
+  }
+});
+
+    </script>
+</body>
+</html>

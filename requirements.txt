@@ -3,3 +3,5 @@ uvicorn
 pandas
 pymysql
 networkx
+oracledb
+rediscluster

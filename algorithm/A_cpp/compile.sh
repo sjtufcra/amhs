@@ -1,0 +1,1 @@
+g++  -std=c++11  /Users/dannier/sjtufcra/amhs/algorithm/A_cpp/srccode.cpp -o /Users/dannier/sjtufcra/amhs/algorithm/A_cpp/srccode -stdlib=libc++

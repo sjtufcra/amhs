@@ -70,6 +70,8 @@ class Graph:
     def set_start_and_goal(self, start_node: Node, goal_node: Node):
         self.start_node = start_node
         self.goal_node = goal_node
+    def modify_adjacent_matrix_edge(self, edge: Edge, new_weight: float):
+        self.adjacent_matrix[edge.start_node.id][edge.end_node.id] = new_weight
 class NetworkXCompatibleGraph(Graph):
     def __init__(self):
         super().__init__()

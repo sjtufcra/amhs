@@ -1,0 +1,1 @@
+g++  -std=c++11  /Users/dannier/sjtufcra/amhs/algorithm/A_cpp/graph/main.cpp -o /Users/dannier/sjtufcra/amhs/algorithm/A_cpp/graph/main -stdlib=libc++

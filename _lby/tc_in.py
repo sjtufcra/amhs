@@ -6,6 +6,8 @@ import json
 
 
 def generating(p):
+
+    
     p.db_connection = oracledb.connect(user='wf2prodmoc', password='wf2moc_22FAB2', dsn='10.34.58.15:1521/f2wdb')
     p.db_cursor = p.db_connection.cursor()
 

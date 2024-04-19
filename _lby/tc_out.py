@@ -28,6 +28,7 @@ def output(p):
 
 def output_new(p, k, v):
     s0 = "SET VEHICLE = '" + v.vehicle_assigned + "', POSPATH = '" + ','.join(v.delivery_route)
+    # s0 = f'SET VEHICLE ={v.vehicle_assigned},POSPATH ={','.join(v.delivery_route)}'
     s1 = "' WHERE COMMANDID = '" + k + "'"
     sql = "UPDATE TRANSFER_TABLE " + s0 + s1
     p.db_cursor.execute(sql)

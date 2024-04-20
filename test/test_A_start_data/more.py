@@ -32,7 +32,7 @@ class OracleConnectionPool:
 
 db_pool = OracleConnectionPool("your_dsn", "your_user", "your_password")
 
-def process_order_threaded(p, order_key, order_value):
+def process_order_threaded(order_key, order_value):
     with db_pool.get_connection() as db_conn:
         cursor = db_conn.cursor()
 

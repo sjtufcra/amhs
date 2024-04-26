@@ -36,6 +36,7 @@ option = {
             show: true,
             position: 'left',
             fontSize: 8,
+            color: 'rgba(83, 112, 198, 1)',
             formatter: function (params) {
               return params.value;
             }
@@ -48,6 +49,7 @@ option = {
             show: true,
             position: 'right',
             fontSize: 10,
+            color: 'rgba(0, 0, 0, 1)',
             formatter: function (params) {
               return params.value;
             }
